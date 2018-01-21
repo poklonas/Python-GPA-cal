@@ -1,0 +1,40 @@
+import csv
+
+# read file and then call function get gpa inside
+def main():
+	course = []
+	weight = []
+	grade = []
+	record = []
+	term = -1 # exam 0 mean year 1 term 1 ,1 mean year 1 term 2 and so on
+	status = 0 # o mean data is not necessary 
+	with open('db1.csv','r', encoding="utf8") as f:
+		reader = csv.reader(f)
+		for row in reader:
+			# phase for check that is no more course in that term
+			if row[0] == '' and status == 1:
+				status = 0
+				record.append([course[term],weight[term],grade[term]])
+			# phase for add course and weight grade to that term
+			if status == 1:
+				course[term].append(row[0])
+				weight[term].append(row[4])
+				grade[term].append(row[6])
+			# phase for enable to add course to new term
+			if row[0] == 'ชื่อวิชา':
+				status = 1
+				course.append([])
+				weight.append([])
+				grade.append([])
+				term += 1
+	print(record[0])
+	#getGPA(record)
+	
+# get imforation with course , weight and grade then 
+# print gpa in each term and sum term 
+def getGPA(record):
+	pass
+
+
+
+main()
