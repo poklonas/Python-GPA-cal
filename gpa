@@ -49,18 +49,28 @@ def showGPA(record):
             print(info[0][i] + ' weight : ' + info[1][i] + ' grade : ' + info[2][i])
             sum_weight += int(info[1][i])
             gpa += int(info[1][i]) * value_grade[info[2][i]]
-		# update for next term calculate gpax
+        # update for next term calculate gpax
         total_marks += gpa
         totol_weight += sum_weight
-		# cal gpa and gpax
+        # cal gpa and gpax
         gpax = str(round(total_marks / totol_weight, 2))
         gpa = str(round(gpa / sum_weight, 2)) 
-		# show in console
+        # show in console
         print('GPA : '+gpa)
         print('GPAX : '+gpax)
         count += 1
 
-
+#export to default format csv file 
+def exportCSV(record):
+    with open('export.csv', 'wb') as f:
+        for term in record:
+		    #split courseID and courseName
+            for i in term[0]:
+                course = i.split('  ')
+            weight = term[1]
+            grade  = term[2]
+            print(course[0])
 
 record = getRecord()
 showGPA(record)
+exportCSV(record)
