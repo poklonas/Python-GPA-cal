@@ -3,8 +3,7 @@ import MySQLdb
 
 # insert data to mysql database
 def main(user, csv):
-    
-    print('---------complete---------')
+    pass
 
 
 if __name__ == "__main__":
