@@ -66,9 +66,9 @@ def showGPA(record):
 #export to default format csv file 
 def exportCSV(record):
     termCount = 0
-    with open('export.csv', 'w') as f:
+    with open('export.csv', 'w' ,newline='') as f:
         fieldnames = ['SubjectID','SubjectName','weight','section','grade','term']
-        file = csv.DictWriter(f,fieldnames=fieldnames)
+        file = csv.DictWriter(f,fieldnames=fieldnames, quoting=csv.QUOTE_MINIMAL)
         #writeHead
         file.writeheader()
         for term in record:
