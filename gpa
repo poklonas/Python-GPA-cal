@@ -7,6 +7,7 @@ def getRecord():
     weight = []
     grade = []
     record = []
+    section = []
     term = -1 # exam 0 mean year 1 term 1 ,1 mean year 1 term 2 and so on
     status = 0 # o mean data is not necessary 
     with open('db1.csv','r', encoding="utf8") as f:
@@ -15,18 +16,20 @@ def getRecord():
             # phase for check that is no more course in that term
             if row[0] == '' and status == 1:
                 status = 0
-                record.append([course[term],weight[term],grade[term]])
+                record.append([course[term],weight[term],grade[term],section[term]])
             # phase for add course and weight grade to that term
             if status == 1:
                 course[term].append(row[0])
                 weight[term].append(row[4])
                 grade[term].append(row[6])
+                section[term].append(row[5])
             # phase for enable to add course to new term
             if row[0] == 'ชื่อวิชา':
                 status = 1
                 course.append([])
                 weight.append([])
                 grade.append([])
+                section.append([])
                 term += 1
     return record
     
@@ -62,15 +65,30 @@ def showGPA(record):
 
 #export to default format csv file 
 def exportCSV(record):
-    with open('export.csv', 'wb') as f:
+    termCount = 0
+    with open('export.csv', 'w') as f:
+        fieldnames = ['SubjectID','SubjectName','weight','section','grade','term']
+        file = csv.DictWriter(f,fieldnames=fieldnames)
+        #writeHead
+        file.writeheader()
         for term in record:
-		    #split courseID and courseName
+            termCount += 1
+            #split SubjectID and SubjectName
+            countSubject = 0
             for i in term[0]:
-                course = i.split('  ')
-            weight = term[1]
-            grade  = term[2]
-            print(course[0])
-
+                subj = i.split('  ') # subj = i.split('  ') = [SubjectID[], SubjectName[]]
+                w = term[1][countSubject] # w = weight[]
+                g = term[2][countSubject] # g = grade[]
+                s = term[3][countSubject] # s = section[]
+                countSubject += 1
+                #write data
+                file.writerow({'SubjectID': subj[0],
+                               'SubjectName': subj[1],
+                               'weight': w,
+                               'section': s,
+                               'grade': g,
+                               'term': termCount})
+            
 record = getRecord()
-showGPA(record)
+#showGPA(record)
 exportCSV(record)
