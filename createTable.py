@@ -15,22 +15,22 @@ def main(dbName):
     TABLES = {}
     TABLES['Student'] = (
     "CREATE TABLE Student ("
-	"	`Student_id` varchar(13) NOT NULL,	"
-	"	`First_name` varchar(100) NOT NULL,"
-	" 	`Last_name` varchar(100) NOT NULL,"
-	" 	PRIMARY KEY (`Student_id`),"
-	"	UNIQUE (Student_id))")
-						
+    "   `Student_id` varchar(13) NOT NULL,  "
+    "   `First_name` varchar(100) NOT NULL,"
+    "   `Last_name` varchar(100) NOT NULL,"
+    "   PRIMARY KEY (`Student_id`),"
+    "   UNIQUE (Student_id))")
+                        
     TABLES['Student_Records'] = (
     "CREATE TABLE Student_Records ("
     "    PK int(11) NOT NULL AUTO_INCREMENT,"
-    "    SubjectID int(10) NOT NULL,"
+    "    SubjectID varchar(10) NOT NULL,"
     "    SubjectName varchar(100) NOT NULL,"
     "    Weight int(1) NOT NULL,"
     "    Section int(3) NOT NULL,"
     "    Grade varchar(2) NOT NULL,"
     "    Term int(2) NOT NULL,"
-	"	 Student_id varchar(13) NOT NULL,"
+    "    Student_id varchar(13) NOT NULL,"
     "    PRIMARY KEY (`PK`),"
     "    FOREIGN KEY (Student_id) REFERENCES Student(Student_id))")
     
