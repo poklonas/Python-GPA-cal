@@ -1,8 +1,8 @@
-import csv, math
+import csv, math, sys
 
 # return array that include course name ,weight and grade in each term
 # record[term_start0][coursename0 or weight1 or grade2][order of information]
-def getRecord():
+def getRecord(file):
     course = []
     weight = []
     grade = []
@@ -10,7 +10,7 @@ def getRecord():
     section = []
     term = -1 # exam 0 mean year 1 term 1 ,1 mean year 1 term 2 and so on
     status = 0 # o mean data is not necessary 
-    with open('db1.csv','r', encoding="utf8") as f:
+    with open(file,'r', encoding="utf8") as f:
         reader = csv.reader(f)
         for row in reader:
             # phase for check that is no more course in that term
@@ -77,9 +77,9 @@ def exportCSV(record):
             countSubject = 0
             for i in term[0]:
                 subj = i.split('  ') # subj = i.split('  ') = [SubjectID[], SubjectName[]]
-                w = term[1][countSubject] # w = weight[]
-                g = term[2][countSubject] # g = grade[]
-                s = term[3][countSubject] # s = section[]
+                w = term[1][countSubject] # w = weight
+                g = term[2][countSubject] # g = grade
+                s = term[3][countSubject] # s = section
                 countSubject += 1
                 #write data
                 file.writerow({'SubjectID': subj[0],
@@ -89,6 +89,6 @@ def exportCSV(record):
                                'grade': g,
                                'term': termCount})
             
-record = getRecord()
-#showGPA(record)
+record = getRecord(sys.argv[1])
+showGPA(record)
 exportCSV(record)
