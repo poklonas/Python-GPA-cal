@@ -2,7 +2,7 @@ import sqlite3
 from sqlite3 import Error
 
 def main():
-    db = "./gradeInf.db"
+    db =  input("database name : ")
     table_student = """CREATE TABLE IF NOT EXISTS Student (
        `Student_id` text  PRIMARY KEY,  
        `First_name` text  NOT NULL,
