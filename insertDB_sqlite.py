@@ -46,8 +46,8 @@ def create_studnt_records(conn, file, id):
             reader = csv.DictReader(f)
             for row in reader:
                 try:
-                    record = (row['SubjectID'],row['SubjectName'],row['weight'],\
-                              row['section'],row['grade'],row['term'],id)
+                    record = (row['SubjectID'],row['SubjectName'],row['Weight'],\
+                              row['Section'],row['Grade'],row['Term'],id)
                     print(record, end='  ')
                     cur.execute(add_subject, record)
                 except Error as e:
