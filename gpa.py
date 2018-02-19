@@ -76,7 +76,7 @@ def exportCSV(record):
             #split SubjectID and SubjectName
             countSubject = 0
             for i in term[0]:
-                subj = i.split('  ') # subj = i.split('  ') = [SubjectID[], SubjectName[]]
+                subj = i.split('   ') # subj = i.split('  ') = [SubjectID[], SubjectName[]]
                 w = term[1][countSubject] # w = weight
                 g = term[2][countSubject] # g = grade
                 s = term[3][countSubject] # s = section
@@ -84,10 +84,10 @@ def exportCSV(record):
                 #write data
                 file.writerow({'SubjectID': subj[0],
                                'SubjectName': subj[1],
-                               'weight': w,
-                               'section': s,
-                               'grade': g,
-                               'term': termCount})
+                               'Weight': w,
+                               'Section': s,
+                               'Grade': g,
+                               'Term': termCount})
             
 record = getRecord(sys.argv[1])
 showGPA(record)
