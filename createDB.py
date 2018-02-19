@@ -3,14 +3,15 @@ import mysql.connector as sql
 
 
 # create a new empty database 
-def main(dbName):
+def main():
     # set config
-    user = 'root'
-    password = '123456789'
-    port = '3000'
+    user = input('user : ')
+    password = input('password : ')
+    port = input('port : ')
+    host = input('host : ')
+    dbName = input('databasename : ')
     # connect to host,user ,pass and dbname
-    db = sql.connect(user=user, password=password, port=port)
-    cursor = db.cursor()
+    db = sql.connect(user="{"+user+"}", password={password}, host="{"+host+"}", port=3306, database={dbName})
     # try to create db
     try:
         cursor.execute('CREATE DATABASE {}'.format(dbName))
@@ -21,4 +22,4 @@ def main(dbName):
         print("Something went wrong: {}".format(err))
 
 if __name__ == "__main__":
-   main(sys.argv[1])
+   main()

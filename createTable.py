@@ -3,13 +3,15 @@ import mysql.connector as sql
 from mysql.connector import errorcode
 
 # create table student and student record for table 
-def main(dbName):
+def main():
     # set config
-    port = '3000'
-    user = 'root'
-    password = '123456789'
+    user = input('user : ')
+    password = input('password : ')
+    port = input('port : ')
+    host = input('host : ')
+    database = input('database: ')
     # connect to host,user ,pass and dbname
-    db = sql.connect(user = user, password = password, port = port, database = dbName)
+    db = sql.connect(host=host,user=user, password=password, port=port,database=database)
     cursor = db.cursor()
     # prepare table data
     TABLES = {}
@@ -51,4 +53,4 @@ def main(dbName):
     cursor.close()  
 
 if __name__ == "__main__":
-   main(sys.argv[1])
+   main()
