@@ -4,7 +4,8 @@ import random
 from sqlite3 import Error
 
 def main():
-    start = input("start num : ")
+    #start = input("start num : ")
+	start = "300000"
     db = "gradeStudent.db"
     file = "5801012610164.csv"
     conn = create_connect(db)
