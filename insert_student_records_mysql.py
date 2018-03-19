@@ -1,7 +1,6 @@
 import csv
 import sys
-import mysql.connector as sql
-from mysql.connector import errorcode
+import MySQLdb as sql
 
 # insert data to mysql database
 def main( file, dbName):
